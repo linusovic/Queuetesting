@@ -7,6 +7,11 @@ void print_ints(const void *data)
 	printf("[%d]", *(int*)data);
 }
 
+/*
+ * Den här funktionen testar Axiom 1.
+ * lsempty(Empty).
+ * Kön ska vara tom om den nyss har skapats. *
+ */
 void ax1(){
 	queue *q=queue_empty(free);	//initiera våran kö, samtidigt som vi skapar kö
 	int* val1 = malloc(sizeof(int*));	//dynamisk minnesallokering
@@ -23,7 +28,11 @@ void ax1(){
 	}
 	queue_kill(q);	//Avallokerar allt.
 }
-
+/*
+ * Den här funktionen testar Axiom 2.
+ * not(lsempty(Enqueue(v,q))
+ * Om du lägger in ett värde i en kö ska den inte vara tom.
+ */
 void ax2(){
 	queue *q=queue_empty(free);
 	int* val1 = malloc(sizeof(int*));	//dynamisk minnesallokering
@@ -38,7 +47,12 @@ void ax2(){
 		queue_kill(q);
 	}
 }
-
+/*
+ * Den här funktionen testar Axiom 3.
+ * lsempty(q) --> Dequeue(Enqueue(v,q) = q
+ * Kön ska vara tom om du har skapat den, lagt till ett värde och därefter
+ * tagit bort ett värde.
+ */
 void ax3(){
 	queue *q=queue_empty(free);
 	int* val1 = malloc(sizeof(int*));	//dynamisk minnesallokering
@@ -51,10 +65,14 @@ void ax3(){
 	}
 	queue_kill(q);	//Avallokerar allt.
 }
-
+/*
+ * not(lsempty) --> Dequeue(Enqueue(v,q)) = Enqueue(v,Dequeue)
+ * Skapa en icketom kö. Att lägga till ett värde och därefter ta bort ett värde
+ * = Att ta bort ett värde och därefter lägga till ett värde.
+ */
 void ax4(){
-	int *compare1 = malloc(sizeof(*compare1));
-	int *compare2 = malloc(sizeof(*compare1));
+	int *compare1;
+	int *compare2;
 
 	// Create the queue.
 	queue *q = queue_empty(free);
@@ -66,7 +84,6 @@ void ax4(){
 		// Push value on stack.
 		q=queue_enqueue(q,v);
 	}
-
 	int *v = malloc(sizeof(*v));
 	*v = 2;
 
@@ -97,9 +114,12 @@ void ax4(){
 	}
 	queue_kill(q2);
 	queue_kill(q);
-
 }
-
+/*
+ * lsempty(q) --> Front(Enqueue,v,q)) = v
+ * Skapa en tom kö. Om du lägger till ett värde ska fronten av kön ha det
+ * värdet.
+ */
 void ax5(){
 	queue *q=queue_empty(free);
 	int* val1 = malloc(sizeof(int*));
@@ -115,6 +135,11 @@ void ax5(){
 	}
 	queue_kill(q);	//Avallokerar allt.
 }
+/*
+ * not(lsempty(q)) --> Front(Enqueue(v,q)) = Front(q)
+ * Skapa en icketom kö. Lägg in ett värde i kön. Fronten av kön ska vara
+ * första värdet som lades in i kön (FIFO). *
+ */
 void ax6(){
 	queue *q=queue_empty(free);
 	int* val1 = malloc(sizeof(int*));
@@ -133,7 +158,10 @@ void ax6(){
 	queue_kill(q);	//Avallokerar allt.
 }
 
-
+/*
+ * Kallar på alla test i tur och ordning, ett test inte lyckas skrivs det
+ * ut ett felmeddelande och programmet avslutar.
+ */
 int main(void){
 
 	ax1();
@@ -143,6 +171,5 @@ int main(void){
 	ax5();
 	ax6();
 	printf("Alla test lyckades.\n");
-
 	return 0;
 }

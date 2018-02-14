@@ -2,11 +2,6 @@
 #include <stdio.h>
 #include "queue.h"
 
-void print_ints(const void *data)
-{
-	printf("[%d]", *(int*)data);
-}
-
 /*
  * Den här funktionen testar Axiom 1.
  * lsempty(Empty).

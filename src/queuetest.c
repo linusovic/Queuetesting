@@ -1,6 +1,11 @@
 #include <stdlib.h>
 #include <stdio.h>
 #include "queue.h"
+/*
+ * Den här filen (queuetest.c) testar den abstrakta datatypen kö. Det gör den
+ * genom att testa olika axiom, sex stycken närmare bestämt.
+ */
+
 
 /*
  * Den här funktionen testar Axiom 1.

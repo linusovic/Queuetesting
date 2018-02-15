@@ -14,19 +14,16 @@
  */
 void ax1(){
 	queue *q=queue_empty(free);	//initiera våran kö, samtidigt som vi skapar kö
-	int* val1 = malloc(sizeof(int*));	//dynamisk minnesallokering
-
-	queue_enqueue(q, val1);	//Stoppar in värde i kö
 
 	if(queue_is_empty(q)) {	//Kollar om kö är tom eller inte
-	printf("Axiom 1 misslyckades.\n");
-	queue_kill(q);
-	exit(1);	//avslutar hela programmet
+		printf("Axiom 1 fungerade.\n");
+		queue_kill(q);
 	}
 	else{
-		printf("Axiom 1 fungerade.\n");
+		printf("Axiom 1 misslyckades.\n");
+		queue_kill(q);	//Avallokerar allt.
+		exit(1);	//avslutar hela programmet
 	}
-	queue_kill(q);	//Avallokerar allt.
 }
 /*
  * Den här funktionen testar Axiom 2.
